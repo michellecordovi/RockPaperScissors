@@ -48,3 +48,29 @@ h1{
       color: navy;
       background-color: white;
 }
+
+#scores {
+      height: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+}
+
+.humanScore,
+.computerScore {
+      border: 1px solid grey;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+}
+
+.points {
+      font-size: 2.5rem;
+}
+
+.winnerAnnouncement {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 1.25rem;
+}

@@ -1,12 +1,13 @@
 const options = ["rock", "paper", "scissors"];
 const randomIndex = Math.floor(Math.random() * 3);
+const choiceInput = document.getElementById("selection");
 
 const getComputerChoice = () => {
       return options[randomIndex];
 }
 
 const getHumanChoice = () => {
-      return window.prompt("Rock, Paper, or Scissors?");
+      return choiceInput.value;
 }
 
 let humanScore = 0;
@@ -21,7 +22,7 @@ const playRound = (humanChoice, computerChoice) => {
             window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Paper beats rock, you win!`)
             humanScore++;
       } else {
-            window.alert("Rock beats paper, you lose!")
+            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats paper, you lose!`)
             computerScore++;
       };
 
@@ -29,7 +30,7 @@ const playRound = (humanChoice, computerChoice) => {
             window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Scissors beats paper, you win!`)
             humanScore++;
       } else {
-            window.alert("Rock beats scissors, you lose!")
+            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats scissors, you lose!`)
             computerScore++;
       };
 
@@ -37,7 +38,7 @@ const playRound = (humanChoice, computerChoice) => {
             window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats scissors, you win!`)
             humanScore++;
       } else {
-            window.alert("Paper beats rock, you lose!")
+            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Paper beats rock, you lose!`)
             computerScore++;
       }
 }
@@ -46,5 +47,5 @@ const humanSelection = getHumanChoice().toLowerCase();
 const computerSelection = getComputerChoice();
 
 
-playRound(humanSelection, computerSelection)
-window.alert(`Your score: ${humanScore}, Computer score: ${computerScore}`)
+// playRound(humanSelection, computerSelection)
+// window.alert(`Your score: ${humanScore}, Computer score: ${computerScore}`)
