@@ -36,7 +36,9 @@ const playRound = () => {
 
       if (humanSelection === computerSelection) {
             winnerAnnouncement.innerHTML = `It's a tie! You both chose ${humanSelection}.`;
-      } else if ((humanSelection === "paper") && (computerSelection === "rock")) {
+      } else if ((humanSelection !== "paper") && (humanSelection !== "scissors") && (humanSelection !== "rock") ) {
+            winnerAnnouncement.innerHTML = `ERROR: Please input either rock, paper, or scissors!`;
+      }else if ((humanSelection === "paper") && (computerSelection === "rock")) {
             humanScore++;
             humanPoints.innerHTML = humanScore;
             winnerAnnouncement.innerHTML = `You chose ${humanSelection} and the computer chose ${computerSelection}. Paper beats rock, you win!`
