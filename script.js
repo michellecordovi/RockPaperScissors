@@ -1,6 +1,5 @@
 //SETS OPTIONS FOR ROCK PAPER OR SCISSORS 
 const options = ["rock", "paper", "scissors"];
-const randomIndex = Math.floor(Math.random() * 3);
 
 // DECLARE DOM VARIABLES
 const form = document.querySelector("form")
@@ -19,7 +18,7 @@ computerPoints.innerHTML = computerScore;
 
 //FUNCTION TO GENERATE COMPUTER CHOICE
 const getComputerSelection = () => {
-      return options[randomIndex];
+      return options[Math.floor(Math.random() * 3)];
 }
 
 // FUNCTION TO GET HUMAN CHOICE FROM FORM INPUT
