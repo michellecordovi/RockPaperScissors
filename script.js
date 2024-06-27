@@ -1,51 +1,74 @@
+//SETS OPTIONS FOR ROCK PAPER OR SCISSORS 
 const options = ["rock", "paper", "scissors"];
 const randomIndex = Math.floor(Math.random() * 3);
-const choiceInput = document.getElementById("selection");
 
-const getComputerChoice = () => {
+// DECLARE DOM VARIABLES
+const form = document.querySelector("form")
+const choiceInput = document.getElementById("selection");
+const winnerAnnouncement = document.querySelector(".winnerAnnouncement")
+const humanPoints = document.querySelector(".human-points")
+const computerPoints = document.querySelector(".computer-points")
+
+
+//DECLARE SCORES AND INPUT INITIAL SCORES TO DOM
+let humanScore = 0;
+let computerScore = 0;
+humanPoints.innerHTML = humanScore;
+computerPoints.innerHTML = computerScore;
+
+
+//FUNCTION TO GENERATE COMPUTER CHOICE
+const getComputerSelection = () => {
       return options[randomIndex];
 }
 
-const getHumanChoice = () => {
+// FUNCTION TO GET HUMAN CHOICE FROM FORM INPUT
+const getHumanSelection = () => {
       return choiceInput.value;
 }
 
-let humanScore = 0;
-let computerScore = 0;
+// DECLARE HUMAN SELECTION AND COMPUTER SELECTION VARIABLES
+let humanSelection;
+let computerSelection;
 
-const playRound = (humanChoice, computerChoice) => {
-      if (humanChoice === computerChoice) {
-            window.alert(`It's a tie! You both chose ${humanChoice}.`)
-      }
 
-      if ((humanChoice === "paper") && (computerChoice === "rock")) {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Paper beats rock, you win!`)
+// FUNCTION TO INITIATE A ROUND OF ROCK PAPER SCISSORS USING HUMAN INPUT AND COMPUTER INPUT
+const playRound = () => {
+
+      if (humanSelection === computerSelection) {
+            winnerAnnouncement.innerHTML = `It's a tie! You both chose ${humanSelection}.`;
+      } else if ((humanSelection === "paper") && (computerSelection === "rock")) {
             humanScore++;
-      } else {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats paper, you lose!`)
+            humanPoints.innerHTML = humanScore;
+            winnerAnnouncement.innerHTML = `You chose ${humanSelection} and the computer chose ${computerSelection}. Paper beats rock, you win!`
+      } else if((humanSelection === "paper") && (computerSelection === "scissors")) {
             computerScore++;
-      };
-
-      if ((humanChoice === "scissors") && (computerChoice === "paper")) {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Scissors beats paper, you win!`)
+            computerPoints.innerHTML = computerScore;
+            winnerAnnouncement.innerHTML = `You chose ${humanSelection} and the computer chose ${computerSelection}. Scissors beats paper, you lose!`;
+      } else if ((humanSelection === "scissors") && (computerSelection === "paper")) {
             humanScore++;
-      } else {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats scissors, you lose!`)
+            humanPoints.innerHTML = humanScore;
+            winnerAnnouncement.innerHTML =`You chose ${humanSelection} and the computer chose ${computerSelection}. Scissors beats paper, you win!`
+      } else if((humanSelection === "scissors") && (computerSelection === "rock")) {
             computerScore++;
-      };
-
-      if ((humanChoice === "rock") && (computerChoice === "scissors")) {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Rock beats scissors, you win!`)
+            computerPoints.innerHTML = computerScore;
+            winnerAnnouncement.innerHTML =`You chose ${humanSelection} and the computer chose ${computerSelection}. Rock beats scissors, you lose!`
+      } else if ((humanSelection === "rock") && (computerSelection === "scissors")) {
             humanScore++;
-      } else {
-            window.alert(`You chose ${humanChoice} and the computer chose ${computerChoice}. Paper beats rock, you lose!`)
+            humanPoints.innerHTML = humanScore;
+            winnerAnnouncement.innerHTML =`You chose ${humanSelection} and the computer chose ${computerSelection}. Rock beats scissors, you win!`
+      } else if((humanSelection === "rock") && (computerSelection === "paper")){
             computerScore++;
+            computerPoints.innerHTML = computerScore;
+            winnerAnnouncement.innerHTML =`You chose ${humanSelection} and the computer chose ${computerSelection}. Paper beats rock, you lose!`
       }
 }
 
-const humanSelection = getHumanChoice().toLowerCase();
-const computerSelection = getComputerChoice();
 
-
-// playRound(humanSelection, computerSelection)
-// window.alert(`Your score: ${humanScore}, Computer score: ${computerScore}`)
+//THIS LISTENS FOR THE SUBMISSION OF THE FORM
+form.addEventListener("submit", (e) => {
+      e.preventDefault();//this prevents the form and page from immediately restarting upon submission
+      humanSelection = getHumanSelection().toLowerCase();
+      computerSelection = getComputerSelection();
+      playRound();
+})
